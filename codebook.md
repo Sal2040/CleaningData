@@ -1,6 +1,6 @@
 Input data:
 
-- 'features.txt': List of all features.
+- 'features.txt': List of all feature variables.
 
 - 'activity_labels.txt': Links the class labels with their activity name.
 
@@ -10,33 +10,111 @@ Input data:
 
 - 'test/X_test.txt': Test set.
 
+Information on input variables (i.e. the feature variables):
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) 
+were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise.
+Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a 
+corner frequency of 0.3 Hz. 
 
-The script manipulates two basic datasets - X_test and X_train. These datasets contain signals from a motion sensor 
-in a Samsung smartphone. The smartfone was warn by 30 individuals while performing several basic activities:
-WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING. 
-The signals were recorded within 2.56 sec time windows and a vector of feature variables was created for each time window.
-The test subjects were randomly divided between a test group and a train group.
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these 
+three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
 
-Detailed information about the feature variables are contained in features_info.txt and a complete list is contained in features.txt.
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. 
+(Note the 'f' to indicate frequency domain signals). 
 
-The basic datasets only contain the values. The labels of activities, subjects and feature values are available in 
-separate files: subject_test/subject train for subjects, y_test/y_train for activities and feature_labels for the
-feature values.
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
 
-In the first step, the script loads all the above mentioned files and labels the basic datasets with subjects, activites and 
-feature values. Subjects are labelled directly by joining the basic dataset with the subject_test/subject_train dataset. 
-The y_test/y_train contain activity numbers only and they are therefore assigned their names contained in the file activity_labels 
-and joined with the basic datasets afterwards. A character vector is created from the feature_labels file and used as the column names
-of the basic sets. The values of the character vector are cleaned from non-standard symbols such as parentheses or dashes so as to prevent
-R from truncating the character values thereby devaluating their descriptive ability.
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
 
-Subsequently, only the columns containing mean or standard deviation varibles are selected (using a string filter) from both resulting
-datasets and the datasets are merged together.
+The set of variables that were estimated from these signals are: 
 
-Finally, the merged dataset is grouped by subjects(1st level) and activities(2nd level) and an average is calculated for each group
-and each feature value. The note "AVERAGE" is added to each feature value name to make the distinction.
+mean(): Mean value
+std(): Standard deviation
+mad(): Median absolute deviation 
+max(): Largest value in array
+min(): Smallest value in array
+sma(): Signal magnitude area
+energy(): Energy measure. Sum of the squares divided by the number of values. 
+iqr(): Interquartile range 
+entropy(): Signal entropy
+arCoeff(): Autorregresion coefficients with Burg order equal to 4
+correlation(): correlation coefficient between two signals
+maxInds(): index of the frequency component with largest magnitude
+meanFreq(): Weighted average of the frequency components to obtain a mean frequency
+skewness(): skewness of the frequency domain signal 
+kurtosis(): kurtosis of the frequency domain signal 
+bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
+angle(): Angle between to vectors.
 
-Output file: cleanset.txt
+Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+
+gravityMean
+tBodyAccMean
+tBodyAccJerkMean
+tBodyGyroMean
+tBodyGyroJerkMean
+
+Complete list of input variables:
+"tBodyAcc-mean()-X"
+"tBodyAcc-mean()-Y"
+"tBodyAcc-mean()-Z"
+"tBodyAcc-std()-X"
+"tBodyAcc-std()-Y"
+"tBodyAcc-std()-Z"
+"tBodyAcc-mad()-X"
+"tBodyAcc-mad()-Y"
+"tBodyAcc-mad()-Z"
+"tBodyAcc-max()-X"
+"tBodyAcc-max()-Y"
+"tBodyAcc-max()-Z"
+"tBodyAcc-min()-X"
+"tBodyAcc-min()-Y"
+"tBodyAcc-min()-Z"
+"tBodyAcc-sma()"
+"tBodyAcc-energy()-X"
+"tBodyAcc-energy()-Y"
+"tBodyAcc-energy()-Z"
+"tBodyAcc-iqr()-X"
+"tBodyAcc-iqr()-Y"
+"tBodyAcc-iqr()-Z"
+"tBodyAcc-entropy()-X"
+"tBodyAcc-entropy()-Y"
+"tBodyAcc-entropy()-Z"
+"tBodyAcc-arCoeff()-X,1"
+"tBodyAcc-arCoeff()-X,2"
+"tBodyAcc-arCoeff()-X,3"
+"tBodyAcc-arCoeff()-X,4"
+"tBodyAcc-arCoeff()-Y,1"
+"tBodyAcc-arCoeff()-Y,2"
+"tBodyAcc-arCoeff()-Y,3"
+"tBodyAcc-arCoeff()-Y,4"
+"tBodyAcc-arCoeff()-Z,1"
+"tBodyAcc-arCoeff()-Z,2"
+"tBodyAcc-arCoeff()-Z,3"
+"tBodyAcc-arCoeff()-Z,4"
+"tBodyAcc-correlation()-X,Y"
+"tBodyAcc-correlation()-X,Z"
+"tBodyAcc-correlation()-Y,Z"
+"tGravityAcc-mean()-X"
+
+
 
 List of output variables:
 
