@@ -47,6 +47,6 @@ clean <- function() {
   
   colnames(new_set)[-c(1, 2)] <- paste(names(new_set)[-c(1, 2)], "AVERAGE", sep = "_")
   
-  write.table(new_set, "cleanset.txt")
+  write.table(new_set, "cleanset.txt", row.names = FALSE)
  
 }
